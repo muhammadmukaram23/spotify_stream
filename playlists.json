@@ -1,0 +1,84 @@
+{
+  "d2784c82-02f7-4361-93b6-7c8d3aae4509": {
+    "id": "d2784c82-02f7-4361-93b6-7c8d3aae4509",
+    "name": "My Favorites",
+    "description": "My favorite songs collection",
+    "created_at": "2025-06-30T17:26:55.444932",
+    "updated_at": "2025-06-30T17:44:04.006366",
+    "songs": [
+      {
+        "id": "4dkss90fdPc",
+        "title": "TU (Official Music Video): TALWIINDER | JACKIE SHROFF | NEELAM KOTHARI | SANJOY | BHUSHAN KUMAR",
+        "channel": "T-Series",
+        "duration": "2:12",
+        "thumbnail": "https://i.ytimg.com/vi/4dkss90fdPc/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCsflDW_PjRmaWZq5_gCi1p6axs0g",
+        "url": "https://www.youtube.com/watch?v=4dkss90fdPc",
+        "added_at": "2025-06-30T17:30:14.645870"
+      },
+      {
+        "id": "IltsOcCj1Ak",
+        "title": "HASEEN - TALWIINDER, NDS, RIPPY (Official Visualizer)",
+        "channel": "Talwiinder",
+        "duration": "2:55",
+        "thumbnail": "https://i.ytimg.com/vi/IltsOcCj1Ak/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBGeEpUa-57Z8mABVRMgWvTCbhqgA",
+        "url": "https://www.youtube.com/watch?v=IltsOcCj1Ak",
+        "added_at": "2025-06-30T17:30:36.236148"
+      },
+      {
+        "id": "AbkEmIgJMcU",
+        "title": "Afusic - Pal Pal with @Talwiinder  (Official Visualiser) Prod. @AliSoomroMusic",
+        "channel": "AFUSIC",
+        "duration": "3:29",
+        "thumbnail": "https://i.ytimg.com/vi/AbkEmIgJMcU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDn0QOOXXrN1nccz0XtSCdi8Mqedg",
+        "url": "https://www.youtube.com/watch?v=AbkEmIgJMcU",
+        "added_at": "2025-06-30T17:30:40.706745"
+      },
+      {
+        "id": "HQ9rgpqBLjw",
+        "title": "Talwiinder - NASHA (Visualizer) | Prod. by Vision",
+        "channel": "Talwiinder",
+        "duration": "3:10",
+        "thumbnail": "https://i.ytimg.com/vi/HQ9rgpqBLjw/hq720.jpg?sqp=-oaymwE2CNAFEJQDSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAqQFigIMCAAQARgTIFsofzAP&rs=AOn4CLAZ8t7f7hkxuj7o6bit0PSLAvJx4Q",
+        "url": "https://www.youtube.com/watch?v=HQ9rgpqBLjw",
+        "added_at": "2025-06-30T17:30:45.706699"
+      },
+      {
+        "id": "Gz38Yj09k3A",
+        "title": "Hasan Raheem - Wishes ft Talwiinder | Prod by Umair (Official Lyric Video)",
+        "channel": "Hasan Raheem",
+        "duration": "3:39",
+        "thumbnail": "https://i.ytimg.com/vi/Gz38Yj09k3A/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAXCaBQuPh3eQ0CI7DUOg7oz6hohQ",
+        "url": "https://www.youtube.com/watch?v=Gz38Yj09k3A",
+        "added_at": "2025-06-30T17:30:49.962664"
+      },
+      {
+        "id": "ZQBgxRuJQqg",
+        "title": "Talwiinder - GALLAN 4 (Lyrical Video)",
+        "channel": "Talwiinder",
+        "duration": "3:16",
+        "thumbnail": "https://i.ytimg.com/vi/ZQBgxRuJQqg/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCyIP9dQBJjMMVO99JHRRAgDwtlFw",
+        "url": "https://www.youtube.com/watch?v=ZQBgxRuJQqg",
+        "added_at": "2025-06-30T17:30:54.322725"
+      },
+      {
+        "id": "GzFnLZ2gyBY",
+        "title": "F**k Em All (Official Music Video) Sidhu Moose Wala  | Sunny Malton",
+        "channel": "Sidhu Moose Wala",
+        "duration": "3:56",
+        "thumbnail": "https://i.ytimg.com/vi/GzFnLZ2gyBY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCazIPzlg5aEriSQhzEm5PwtbZOCg",
+        "url": "https://www.youtube.com/watch?v=GzFnLZ2gyBY",
+        "added_at": "2025-06-30T17:32:16.407839"
+      },
+      {
+        "id": "GtEvysh1654",
+        "title": "Imagine Dragons - Thunder (Lyrics)",
+        "channel": "7clouds",
+        "duration": "3:04",
+        "thumbnail": "https://i.ytimg.com/vi/GtEvysh1654/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC3lBTcB3O8gmFyV3njylhklqNqxw",
+        "url": "https://www.youtube.com/watch?v=GtEvysh1654",
+        "added_at": "2025-06-30T17:44:04.006356"
+      }
+    ],
+    "total_duration": 1541
+  }
+}
