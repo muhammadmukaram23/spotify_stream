@@ -280,16 +280,22 @@
             z-index: 50;
         }
 
-        .now-playing {
-            background: #6366f1;
-            color: #ffffff;
-            padding: 16px 20px;
-            border-radius: 12px 12px 0 0;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+                 .now-playing {
+             background: #6366f1;
+             color: #ffffff;
+             padding: 16px 20px;
+             border-radius: 12px 12px 0 0;
+             font-weight: 600;
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             gap: 12px;
+         }
+
+         .playlist-controls-mini {
+             display: flex;
+             gap: 8px;
+         }
 
         .audio-player {
             width: 100%;
@@ -688,6 +694,14 @@
             <div id="nowPlaying" class="now-playing" style="display: none;">
                 <span>🎵</span>
                 <span>Now Playing: <span id="currentSong"></span></span>
+                <div id="playlistControls" class="playlist-controls-mini" style="display: none;">
+                    <button class="btn btn-small btn-info" onclick="playPreviousSong()" title="Previous Song">
+                        <span>⏮️</span>
+                    </button>
+                    <button class="btn btn-small btn-info" onclick="playNextSong()" title="Next Song">
+                        <span>⏭️</span>
+                    </button>
+                </div>
             </div>
             <audio id="audioPlayer" class="audio-player" controls>
                 Your browser does not support the audio element.
@@ -702,6 +716,8 @@
         let currentlyPlaying = null;
         let currentPlaylist = null;
         let allPlaylists = [];
+        let currentPlaylistIndex = -1;
+        let isPlayingPlaylist = false;
 
         // Check API status on load
         window.addEventListener('load', () => {
@@ -799,10 +815,23 @@
             });
         }
 
-        async function playVideo(videoId, title) {
+        async function playVideo(videoId, title, playlistIndex = -1) {
             const audioPlayer = document.getElementById('audioPlayer');
             const nowPlayingDiv = document.getElementById('nowPlaying');
             const currentSongSpan = document.getElementById('currentSong');
+            
+            // Set playlist context if provided
+            if (playlistIndex >= 0) {
+                currentPlaylistIndex = playlistIndex;
+                isPlayingPlaylist = true;
+                // Show playlist controls
+                document.getElementById('playlistControls').style.display = 'flex';
+            } else {
+                isPlayingPlaylist = false;
+                currentPlaylistIndex = -1;
+                // Hide playlist controls
+                document.getElementById('playlistControls').style.display = 'none';
+            }
             
             try {
                 // Show loading state
@@ -933,8 +962,14 @@
         const audioPlayer = document.getElementById('audioPlayer');
         
         audioPlayer.addEventListener('ended', () => {
-            document.getElementById('nowPlaying').style.display = 'none';
-            currentlyPlaying = null;
+            if (isPlayingPlaylist && currentPlaylist && currentPlaylistIndex >= 0) {
+                // Auto-play next song in playlist
+                playNextSong();
+            } else {
+                // Single song playback ended
+                document.getElementById('nowPlaying').style.display = 'none';
+                currentlyPlaying = null;
+            }
         });
         
         audioPlayer.addEventListener('pause', () => {
@@ -944,6 +979,43 @@
         audioPlayer.addEventListener('play', () => {
             console.log('Audio playing');
         });
+
+        // Auto-play next song in playlist
+        async function playNextSong() {
+            if (!currentPlaylist || !isPlayingPlaylist || currentPlaylistIndex < 0) {
+                return;
+            }
+            
+            const nextIndex = currentPlaylistIndex + 1;
+            
+            if (nextIndex < currentPlaylist.songs.length) {
+                // Play next song
+                const nextSong = currentPlaylist.songs[nextIndex];
+                console.log(`Auto-playing next song: ${nextSong.title}`);
+                await playVideo(nextSong.id, nextSong.title, nextIndex);
+            } else {
+                // Playlist ended
+                console.log('Playlist finished');
+                document.getElementById('nowPlaying').style.display = 'none';
+                document.getElementById('playlistControls').style.display = 'none';
+                currentlyPlaying = null;
+                isPlayingPlaylist = false;
+                currentPlaylistIndex = -1;
+                alert('Playlist finished! 🎵');
+            }
+        }
+
+        // Play previous song in playlist
+        async function playPreviousSong() {
+            if (!currentPlaylist || !isPlayingPlaylist || currentPlaylistIndex <= 0) {
+                return;
+            }
+            
+            const prevIndex = currentPlaylistIndex - 1;
+            const prevSong = currentPlaylist.songs[prevIndex];
+            console.log(`Playing previous song: ${prevSong.title}`);
+            await playVideo(prevSong.id, prevSong.title, prevIndex);
+        }
 
         // Tab management
         function showTab(tabName) {
@@ -1072,7 +1144,7 @@
                 playlistSongs.innerHTML = '<div class="loading">No songs in this playlist yet</div>';
             } else {
                 playlistSongs.innerHTML = '';
-                playlist.songs.forEach(song => {
+                playlist.songs.forEach((song, index) => {
                     const songDiv = document.createElement('div');
                     songDiv.className = 'playlist-song-item';
                     
@@ -1084,7 +1156,7 @@
                             <div class="song-meta">${song.channel} • ${song.duration}</div>
                         </div>
                         <div class="song-actions">
-                            <button class="btn btn-success btn-small" onclick="playVideo('${song.id}', '${song.title.replace(/'/g, "\\'")}')">
+                            <button class="btn btn-success btn-small" onclick="playVideo('${song.id}', '${song.title.replace(/'/g, "\\'")}', ${index})">
                                 <span>▶️</span>
                             </button>
                             <button class="btn btn-info btn-small" onclick="downloadVideo('${song.id}', '${song.title.replace(/'/g, "\\'")}')">
@@ -1110,7 +1182,8 @@
             }
             
             const firstSong = currentPlaylist.songs[0];
-            await playVideo(firstSong.id, firstSong.title);
+            console.log(`Starting playlist: ${currentPlaylist.name}`);
+            await playVideo(firstSong.id, firstSong.title, 0);
         }
 
         async function shufflePlaylist() {
@@ -1121,8 +1194,11 @@
                 if (response.ok) {
                     const shuffledPlaylist = await response.json();
                     if (shuffledPlaylist.songs.length > 0) {
+                        // Update current playlist with shuffled order
+                        currentPlaylist = shuffledPlaylist;
                         const firstSong = shuffledPlaylist.songs[0];
-                        await playVideo(firstSong.id, firstSong.title);
+                        console.log(`Starting shuffled playlist: ${currentPlaylist.name}`);
+                        await playVideo(firstSong.id, firstSong.title, 0);
                     }
                 }
             } catch (error) {
